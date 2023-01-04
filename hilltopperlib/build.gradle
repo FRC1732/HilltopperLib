@@ -9,6 +9,30 @@
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
+    id 'maven-publish'
+    id 'java-library-distribution'
+}
+
+distributions {
+    main {
+        distributionBaseName = 'hilltopperlib'
+    }
+}
+
+version = '1.0.0'
+group = 'com.team1732.autolib'
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = uri("${buildDir}/publishing-repository")
+        }
+    }
 }
 
 repositories {
@@ -26,3 +50,23 @@ dependencies {
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:31.0.1-jre'
 }
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+// task sourcesJar(type: Jar, dependsOn: classes) {
+//     classifier = 'sources'
+//     from sourceSets.main.allSource
+// }
+
+// task javadocJar(type: Jar, dependsOn: javadoc) {
+//     classifier = 'javadoc'
+//     from javadoc.destinationDir
+// }
+
+// artifacts {
+//     archives sourcesJar
+//     archives javadocJar
+// }
