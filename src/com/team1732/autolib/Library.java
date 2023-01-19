@@ -3,7 +3,10 @@
  */
 package com.team1732.autolib;
 
+import edu.wpi.first.wpilibj.Timer;
+
 public class Library {
+    public static Timer _stoppedTimer = new Timer();
     /**
      * This method simply returns true
      * 

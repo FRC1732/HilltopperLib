@@ -1,5 +1,7 @@
 # Gradle build outputs
 /.gradle/
-*/build/
+build/
+bin/
+docs/
 *.class
 *.bak
